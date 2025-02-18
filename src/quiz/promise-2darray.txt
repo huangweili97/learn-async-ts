@@ -1,0 +1,13 @@
+- Extract the code in the setTimeout function and replace the setTimeout function  with the extracted code. Then run the main script. 
+- Is there a difference in the flow of execution from when the code was in the setTimeout function?
+- Is the flow of execution in both these examples different from the flow of execution with the examples using the fetch() API, which also returns a promise? 
+- If yes, explain the code execution difference. Add your explanation to this file.
+
+- Replaced setTimeout with direct execution inside the Promise constructor.
+- Execution flow difference:
+  - With setTimeout: sum calculation runs in the next event loop cycle.
+  - Without setTimeout: sum calculation runs immediately.
+- Difference from fetch() API:
+  - fetch() performs actual asynchronous I/O (network request).
+  - setTimeout(0) only defers execution to the next event loop iteration.
+- Conclusion: fetch() is fully non-blocking, while setTimeout(0) just delays execution slightly.

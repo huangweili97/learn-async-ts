@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  title: Incidents API
+  version: 1.0.0
+  description: API to fetch incident data
+servers:
+  - url: http://localhost:8000
+paths:
+  /incidents:
+    get:
+      summary: Get all incidents
+      responses:
+        '200':
+          description: A list of incidents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: MABOS001
+                    date:
+                      type: string
+                      example: 2017-06-17
+                    time:
+                      type: string
+                      example: 14:37
+                    road_id:
+                      type: string
+                    place:
+                      type: string
+                    direction:
+                      type: string
+                    description:
+                      type: string
+
+  /incidents/{id}:
+    get:
+      summary: Get a specific incident by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            pattern: ^MA.*
+      responses:
+        '200':
+          description: A specific incident
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: MABOS001
+                  date:
+                    type: string
+                    example: 2017-06-17
+                  time:
+                    type: string
+                    example: 14:37
+                  road_id:
+                    type: string
+                  place:
+                    type: string
+                  direction:
+                    type: string
+                  description:
+                    type: string
+        '400':
+          description: Invalid ID format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid ID format"
